@@ -39,13 +39,13 @@ class OpenAiManager:
 
         # Check that the prompt is under the token context limit
         chat_question = [{"role": "user", "content": prompt}]
-        if num_tokens_from_messages(chat_question) > 8000:
+        if num_tokens_from_messages(chat_question) > 120_000: # gpt-4-turbo has a context limit of 128k tokens
             print("The length of this chat question is too large for the GPT model")
             return
 
         print("[yellow]\nAsking ChatGPT a question...")
         completion = self.client.chat.completions.create(
-          model="gpt-4",
+          model="gpt-4-1106-turbo",
           messages=chat_question
         )
 
@@ -65,13 +65,13 @@ class OpenAiManager:
 
         # Check total token limit. Remove old messages as needed
         print(f"[coral]Chat History has a current token length of {num_tokens_from_messages(self.chat_history)}")
-        while num_tokens_from_messages(self.chat_history) > 8000:
+        while num_tokens_from_messages(self.chat_history) > 120_000:
             self.chat_history.pop(1) # We skip the 1st message since it's the system message
             print(f"Popped a message! New token length is: {num_tokens_from_messages(self.chat_history)}")
 
         print("[yellow]\nAsking ChatGPT a question...")
         completion = self.client.chat.completions.create(
-          model="gpt-4",
+          model="gpt-4-1106-turbo",
           messages=self.chat_history
         )
 
