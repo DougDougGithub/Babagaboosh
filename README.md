@@ -9,6 +9,8 @@ Written by DougDoug. Feel free to use this for whatever you want! Credit is appr
 
 4) This uses the Microsoft Azure TTS, Elevenlabs, and OpenAi services. You'll need to set up an account with these services and generate an API key from them. Then add these keys as windows environment variables named AZURE_TTS_KEY, AZURE_TTS_REGION, ELEVENLABS_API_KEY, and OPENAI_API_KEY respectively.
 
+Note that this app uses the GPT-4 model from OpenAi. As of this writing (Jan 13 2024), you need to pay $1 to OpenAi in order to get access to the GPT-4 model API. So after setting up your account with OpenAi, you will need to pay for at least $1 in credits so that your account is given the permission to use the GPT-4 model when running my app. See here: https://help.openai.com/en/articles/7102672-how-can-i-access-gpt-4
+
 5) Optionally, you can use OBS Websockets and an OBS plugin to make images move while talking.
 First open up OBS. Make sure you're running version 28.X or later.
 Click Tools, then WebSocket Server Settings.
