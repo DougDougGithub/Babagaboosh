@@ -1,4 +1,4 @@
-azure_storage_blob==12.19.0
+azure-cognitiveservices-speech==12.19.0
 elevenlabs==0.2.8
 keyboard==0.13.5
 mutagen==1.46.0
