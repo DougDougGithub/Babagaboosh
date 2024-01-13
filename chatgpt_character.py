@@ -7,6 +7,8 @@ from eleven_labs import ElevenLabsManager
 from obs_websockets import OBSWebsocketsManager
 from audio_player import AudioManager
 
+ELEVENLABS_VOICE = "Pointboat" # Replace this with the name of whatever voice you have created on Elevenlabs
+
 BACKUP_FILE = "ChatHistoryBackup.txt"
 
 elevenlabs_manager = ElevenLabsManager()
@@ -46,7 +48,7 @@ while True:
         time.sleep(0.1)
         continue
 
-    print("[green]User press F4 key! Beginning listen")
+    print("[green]User pressed F4 key! Now listening to your microphone:")
 
     # Get question from mic
     mic_result = speechtotext_manager.speechtotext_from_mic_continuous()
@@ -59,15 +61,15 @@ while True:
         file.write(str(openai_manager.chat_history))
 
     # Send it to 11Labs to turn into cool audio
-    elevenlabs_output = elevenlabs_manager.text_to_audio(openai_result, "Pointboat", False)
+    elevenlabs_output = elevenlabs_manager.text_to_audio(openai_result, ELEVENLABS_VOICE, False)
 
-    # Enable character pic in OBS
+    # Enable the picture of Pajama Sam in OBS
     obswebsockets_manager.set_source_visibility("*** Mid Monitor", "Pajama Sam", True)
 
     # Play the mp3 file
     audio_manager.play_audio(elevenlabs_output, True, True, True)
 
-    # Disable character pic in OBS
+    # Disable Pajama Sam pic in OBS
     obswebsockets_manager.set_source_visibility("*** Mid Monitor", "Pajama Sam", False)
 
     print("[green]\n!!!!!!!\nFINISHED PROCESSING DIALOGUE.\nREADY FOR NEXT INPUT\n!!!!!!!\n")
