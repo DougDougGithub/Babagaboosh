@@ -4,7 +4,7 @@ keyboard==0.13.5
 mutagen==1.46.0
 obs_websocket_py==1.0
 openai==1.7.2
-pygame==2.3.0
+pydantic==1.10.13
 pygame_ce==2.3.0
 rich==13.7.0
 soundfile==0.12.1
