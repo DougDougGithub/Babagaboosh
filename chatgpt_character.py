@@ -7,7 +7,7 @@ from eleven_labs import ElevenLabsManager
 from obs_websockets import OBSWebsocketsManager
 from audio_player import AudioManager
 
-BACKUP_FILE = r"E:\Dropbox\Livestream Assets\Python Scripts\ChatGPT Characters\Pajama Sam\ChatHistoryBackup.txt"
+BACKUP_FILE = "ChatHistoryBackup.txt"
 
 elevenlabs_manager = ElevenLabsManager()
 obswebsockets_manager = OBSWebsocketsManager()
