@@ -2,7 +2,7 @@
 App that lets you have a verbal conversation with OpenAi's GPT 4
 
 ## Instructions
-- Install Python 3.9
+- Install Python 3.9.2
 - Run `pip install -r requirements.txt`
 - Set up accounts with Azure TTS, Elevenlabs, and OpenAi. Then add your account's API keys as env variables.
 - If you are using OBS, enable the OBS Websocket Server in OBS and make sure the Port and Password match the variables listed in the websockets_auth.py file
