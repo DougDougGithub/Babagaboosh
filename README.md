@@ -5,13 +5,11 @@ Written by DougDoug. Feel free to use this for whatever you want! Credit is appr
 ## SETUP:
 1) This was written in Python 3.9.2. Install page here: https://www.python.org/downloads/release/python-392/
 
-3) Run `pip install -r requirements.txt` to install all modules.
+2) Run `pip install -r requirements.txt` to install all modules.
 
-4) This uses the Microsoft Azure TTS, Elevenlabs, and OpenAi services. You'll need to set up an account with these services and generate an API key from them. Then add these keys as windows environment variables named AZURE_TTS_KEY, AZURE_TTS_REGION, ELEVENLABS_API_KEY, and OPENAI_API_KEY respectively.
+3) This uses the Microsoft Azure TTS, Elevenlabs, and OpenAi services. You'll need to set up an account with these services and generate an API key from them. Then add these keys as windows environment variables named AZURE_TTS_KEY, AZURE_TTS_REGION, ELEVENLABS_API_KEY, and OPENAI_API_KEY respectively. Note that this app uses the GPT-4 model from OpenAi. As of this writing (Jan 13 2024), you need to pay $1 to OpenAi in order to get access to the GPT-4 model API. So after setting up your account with OpenAi, you will need to pay for at least $1 in credits so that your account is given the permission to use the GPT-4 model when running my app. See here: https://help.openai.com/en/articles/7102672-how-can-i-access-gpt-4
 
-Note that this app uses the GPT-4 model from OpenAi. As of this writing (Jan 13 2024), you need to pay $1 to OpenAi in order to get access to the GPT-4 model API. So after setting up your account with OpenAi, you will need to pay for at least $1 in credits so that your account is given the permission to use the GPT-4 model when running my app. See here: https://help.openai.com/en/articles/7102672-how-can-i-access-gpt-4
-
-5) Optionally, you can use OBS Websockets and an OBS plugin to make images move while talking.
+4) Optionally, you can use OBS Websockets and an OBS plugin to make images move while talking.
 First open up OBS. Make sure you're running version 28.X or later.
 Click Tools, then WebSocket Server Settings.
 Make sure "Enable WebSocket server" is checked. Make sure Server Port is '4455', and set the Server Password to 'TwitchChat9'. If you use a different Server Port or Server Password in your OBS, just make sure you update the websockets_auth.py file accordingly.
@@ -20,7 +18,7 @@ Now you can use this plugin to add a filter to an audio source that will change 
 Note that OBS must be open when you're running this code, otherwise OBS WebSockets won't be able to connect.
 If you don't need the images to move while talking, you can just delete the OBS portions of the code.
 
-6) Elevenlabs is the service I use for Ai voices. Once you've made an Ai voice on the Elevenlabs website, open up chatgpt_character.py and replace the ELEVENLABS_VOICE variable with the name of your Ai voice.
+5) Elevenlabs is the service I use for Ai voices. Once you've made an Ai voice on the Elevenlabs website, open up chatgpt_character.py and replace the ELEVENLABS_VOICE variable with the name of your Ai voice.
 
 ## Using the App
 
