@@ -88,6 +88,9 @@ class AudioManager:
         # We must use asyncio.sleep() here because the normal time.sleep() will block the thread, even if it's in an async function
         await asyncio.sleep(file_length)
 
+def play_error():
+    # no clue i didn't test this
+    AudioManager().play_audio("error.mp3")
 
 # TESTS
 if __name__ == '__main__':

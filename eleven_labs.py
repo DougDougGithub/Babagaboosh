@@ -5,6 +5,8 @@ import os
 try:
   set_api_key(os.getenv('ELEVENLABS_API_KEY'))
 except TypeError:
+  from audio_player import play_error
+  play_error()
   exit("Ooops! You forgot to set ELEVENLABS_API_KEY in your environment!")
 
 class ElevenLabsManager:

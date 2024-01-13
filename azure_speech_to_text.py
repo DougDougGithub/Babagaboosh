@@ -14,6 +14,8 @@ class SpeechToTextManager:
         try:
             self.azure_speechconfig = speechsdk.SpeechConfig(subscription=os.getenv('AZURE_TTS_KEY'), region=os.getenv('AZURE_TTS_REGION'))
         except TypeError:
+            from audio_player import play_error
+            play_error()
             exit("Ooops! You forgot to set AZURE_TTS_KEY or AZURE_TTS_REGION in your environment!")
         
         self.azure_speechconfig.speech_recognition_language="en-US"

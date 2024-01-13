@@ -29,6 +29,8 @@ class OpenAiManager:
         try:
             self.client = OpenAI(api_key=os.environ['OPENAI_API_KEY'])
         except TypeError:
+            from audio_player import play_error
+            play_error()
             exit("Ooops! You forgot to set OPENAI_API_KEY in your environment!")
 
     # Asks a question with no chat history
