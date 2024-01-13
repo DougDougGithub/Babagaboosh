@@ -26,7 +26,10 @@ class OpenAiManager:
     
     def __init__(self):
         self.chat_history = [] # Stores the entire conversation
-        self.client = OpenAI(api_key=os.environ['OPENAI_API_KEY'])
+        try:
+            self.client = OpenAI(api_key=os.environ['OPENAI_API_KEY'])
+        except TypeError:
+            exit("Ooops! You forgot to set OPENAI_API_KEY in your environment!")
 
     # Asks a question with no chat history
     def chat(self, prompt=""):

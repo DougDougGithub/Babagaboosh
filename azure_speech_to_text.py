@@ -11,8 +11,12 @@ class SpeechToTextManager:
     def __init__(self):
         # Creates an instance of a speech config with specified subscription key and service region.
         # Replace with your own subscription key and service region (e.g., "westus").
-         self.azure_speechconfig = speechsdk.SpeechConfig(subscription=os.getenv('AZURE_TTS_KEY'), region=os.getenv('AZURE_TTS_REGION'))
-         self.azure_speechconfig.speech_recognition_language="en-US"
+        try:
+            self.azure_speechconfig = speechsdk.SpeechConfig(subscription=os.getenv('AZURE_TTS_KEY'), region=os.getenv('AZURE_TTS_REGION'))
+        except TypeError:
+            exit("Ooops! You forgot to set AZURE_TTS_KEY or AZURE_TTS_REGION in your environment!")
+        
+        self.azure_speechconfig.speech_recognition_language="en-US"
         
     def speechtotext_from_mic(self):
         

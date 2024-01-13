@@ -7,7 +7,9 @@ from eleven_labs import ElevenLabsManager
 from obs_websockets import OBSWebsocketsManager
 from audio_player import AudioManager
 
-BACKUP_FILE = r"E:\Dropbox\Livestream Assets\Python Scripts\ChatGPT Characters\Pajama Sam\ChatHistoryBackup.txt"
+ELEVENLABS_VOICE = "Pointboat" # Replace this with the name of whatever voice you have created on Elevenlabs
+
+BACKUP_FILE = "ChatHistoryBackup.txt"
 
 elevenlabs_manager = ElevenLabsManager()
 obswebsockets_manager = OBSWebsocketsManager()
@@ -15,7 +17,7 @@ speechtotext_manager = SpeechToTextManager()
 openai_manager = OpenAiManager()
 audio_manager = AudioManager()
 
-FIRST_SYSTEM_MESSAGE = {"role": "user", "content": '''
+FIRST_SYSTEM_MESSAGE = {"role": "system", "content": '''
 You are Pajama Sam, the lovable protagonist from the children's series Pajama Sam from Humongous Entertainment. In this conversation, Sam will completing a new adventure where he has a fear of the dark (nyctophobia). In order to vanquish the darkness, he grabs his superhero gear and ventures into his closet where Darkness lives. After losing his balance and falling into the land of darkness, his gear is taken away by a group of customs trees. Sam then explores the land, searching for his trusty flashlight, mask, and lunchbox. 
                         
 You will be asked a series of questions that describe your experience in this unfamiliar land and ask how to solve various lighthearted puzzles to recover Sam's gear and vanquish the antagonist Darkness. 
@@ -46,7 +48,7 @@ while True:
         time.sleep(0.1)
         continue
 
-    print("[green]User press F4 key! Beginning listen")
+    print("[green]User pressed F4 key! Now listening to your microphone:")
 
     # Get question from mic
     mic_result = speechtotext_manager.speechtotext_from_mic_continuous()
@@ -59,15 +61,15 @@ while True:
         file.write(str(openai_manager.chat_history))
 
     # Send it to 11Labs to turn into cool audio
-    elevenlabs_output = elevenlabs_manager.text_to_audio(openai_result, "Pointboat", False)
+    elevenlabs_output = elevenlabs_manager.text_to_audio(openai_result, ELEVENLABS_VOICE, False)
 
-    # Enable character pic in OBS
+    # Enable the picture of Pajama Sam in OBS
     obswebsockets_manager.set_source_visibility("*** Mid Monitor", "Pajama Sam", True)
 
     # Play the mp3 file
     audio_manager.play_audio(elevenlabs_output, True, True, True)
 
-    # Disable character pic in OBS
+    # Disable Pajama Sam pic in OBS
     obswebsockets_manager.set_source_visibility("*** Mid Monitor", "Pajama Sam", False)
 
     print("[green]\n!!!!!!!\nFINISHED PROCESSING DIALOGUE.\nREADY FOR NEXT INPUT\n!!!!!!!\n")

@@ -2,7 +2,10 @@ from elevenlabs import generate, stream, set_api_key, voices, play, save
 import time
 import os
 
-set_api_key(os.getenv('ELEVENLABS_API_KEY'))
+try:
+  set_api_key(os.getenv('ELEVENLABS_API_KEY'))
+except TypeError:
+  exit("Ooops! You forgot to set ELEVENLABS_API_KEY in your environment!")
 
 class ElevenLabsManager:
 
