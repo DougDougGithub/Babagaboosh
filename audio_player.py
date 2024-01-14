@@ -94,6 +94,9 @@ if __name__ == '__main__':
     audio_manager = AudioManager()
     MP3_FILEPATH = "TestAudio_MP3.mp3"
     WAV_FILEPATH = "TestAudio_WAV.wav"
+
+    if not os.path.exists(MP3_FILEPATH) or not os.path.exists(WAV_FILEPATH):
+        exit("Missing test audio")
     
     # MP3 Test
     audio_manager.play_audio(MP3_FILEPATH)
