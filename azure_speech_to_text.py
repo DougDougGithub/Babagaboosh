@@ -145,12 +145,26 @@ class SpeechToTextManager:
         result_future.get()  # wait for voidfuture, so we know engine initialization is done.
         print('Continuous Speech Recognition is now running, say something.')
 
+        request_stop = False
+        timeout_time = time.time()
         while not done:
             # METHOD 1 - Press the stop key. This is 'p' by default but user can provide different key
-            if keyboard.read_key() == stop_key:
-                print("\nEnding azure speech recognition\n")
-                self.azure_speechrecognizer.stop_continuous_recognition_async()
-                break
+            if request_stop == False:
+                if keyboard.read_key() == stop_key:
+                    request_stop = True
+                    timeout_time = time.time()
+                    print("\nAttempting to end azure speech recognition\n")
+            if request_stop == True:
+                if all_results:
+                    print("\nEnding azure speech recognition\n")
+                    self.azure_speechrecognizer.stop_continuous_recognition_async()
+                    break
+                if (time.time() - timeout_time) > 10:
+                    print("\nNo response in 10s\n")
+                    # Phrase here is what is said if nothing was returned, this stops the app crashing
+                    all_results = ["Speak up Chip!"]
+                    self.azure_speechrecognizer.stop_continuous_recognition_async()
+                    break
             
             # METHOD 2 - User must type "stop" into cmd window
             #print('type "stop" then enter when done')
