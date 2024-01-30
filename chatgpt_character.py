@@ -53,6 +53,10 @@ while True:
     # Get question from mic
     mic_result = speechtotext_manager.speechtotext_from_mic_continuous()
     
+    if mic_result == '':
+        print("[red]Did not receive any input from your microphone!")
+        continue
+
     # Send question to OpenAi
     openai_result = openai_manager.chat_with_history(mic_result)
     
