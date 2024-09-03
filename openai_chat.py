@@ -3,7 +3,7 @@ import tiktoken
 import os
 from rich import print
 
-def num_tokens_from_messages(messages, model='gpt-4'):
+def num_tokens_from_messages(messages, model='gpt-4o'):
   """Returns the number of tokens used by a list of messages.
   Copied with minor changes from: https://platform.openai.com/docs/guides/chat/managing-tokens """
   try:
@@ -45,7 +45,7 @@ class OpenAiManager:
 
         print("[yellow]\nAsking ChatGPT a question...")
         completion = self.client.chat.completions.create(
-          model="gpt-4",
+          model="gpt-4o",
           messages=chat_question
         )
 
@@ -71,7 +71,7 @@ class OpenAiManager:
 
         print("[yellow]\nAsking ChatGPT a question...")
         completion = self.client.chat.completions.create(
-          model="gpt-4",
+          model="gpt-4o",
           messages=self.chat_history
         )
 
@@ -92,11 +92,11 @@ if __name__ == '__main__':
 
     # CHAT WITH HISTORY TEST
     FIRST_SYSTEM_MESSAGE = {"role": "system", "content": "Act like you are Captain Jack Sparrow from the Pirates of Carribean movie series!"}
-    FIRST_USER_MESSAGE = {"role": "user", "content": "Ahoy there! Who are you, and what are you doing in these parts? Please give me a 1 sentence background on how you got here. And do you have any mayonnaise I can borrow?"}
+    FIRST_USER_MESSAGE = {"role": "user", "content": "Ahoy there! Who are you, and what are you doing in these parts? Please give me a 1 sentence background on how you got here."}
     openai_manager.chat_history.append(FIRST_SYSTEM_MESSAGE)
     openai_manager.chat_history.append(FIRST_USER_MESSAGE)
 
     while True:
-        new_prompt = input("\nNext question? \n\n")
+        new_prompt = input("\nType out your next question Jack Sparrow, then hit enter: \n\n")
         openai_manager.chat_with_history(new_prompt)
         
