@@ -1,0 +1,1 @@
+powershell.exe .\env_var_setup.ps1
