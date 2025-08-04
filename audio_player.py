@@ -49,17 +49,17 @@ class AudioManager:
             # Sleep until file is done playing
             time.sleep(file_length)
 
-            # Delete the file
-            if delete_file:
-                # Stop Pygame so file can be deleted
-                # Note: this will stop the audio on other threads as well, so it's not good if you're playing multiple sounds at once
-                pygame.mixer.music.stop()
-                pygame.mixer.quit()
-                try:  
-                    os.remove(file_path)
-                    print(f"Deleted the audio file.")
-                except PermissionError:
-                    print(f"Couldn't remove {file_path} because it is being used by another process.")
+        # Delete the file
+        if delete_file:
+            # Stop Pygame so file can be deleted
+            # Note: this will stop the audio on other threads as well, so it's not good if you're playing multiple sounds at once
+            pygame.mixer.music.stop()
+            pygame.mixer.quit()
+            try:  
+                os.remove(file_path)
+                print(f"Deleted the audio file.")
+            except PermissionError:
+                print(f"Couldn't remove {file_path} because it is being used by another process.")
 
     async def play_audio_async(self, file_path):
         """
