@@ -16,8 +16,10 @@ class ElevenLabsManager:
 
     # Convert text to speech, then save it to file. Returns the file path
     def text_to_audio(self, input_text, voice="Doug VO Only", save_as_wave=True, subdirectory=""):
+        #Fix the TTS reading "asterisk" or "underscore" or "hashtag" aloud
+        temp_text = input_text.replace("*", "").replace("#", "").replace("_", "")
         audio_saved = generate(
-          text=input_text,
+          text=temp_text,
           voice=voice,
           model="eleven_monolingual_v1"
         )
